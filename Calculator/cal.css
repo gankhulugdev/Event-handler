@@ -1,0 +1,49 @@
+.cal {
+    margin: 0 auto;
+    width: 200px;
+    height: 300px;
+    background-color: black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.screen {
+    display: flex;
+    font-family: 'Scientific Calculator LCD', sans-serif;                                                
+    width: 77.5%;
+    height: 70px;
+    background-color: white;
+    border-radius: 5px;
+    margin: 5px;
+    word-wrap: break-word;
+    word-break: break-all; 
+
+}
+
+.buttons {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.button {
+    font-size: large;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.button:hover{
+    background-color: azure;
+}
+
+.button:active{
+    background-color:aqua;
+}
+
