@@ -11,6 +11,7 @@ let isEqualPressed = false;
 let isZeroDot = false;
 
 
+
 const clearNumsOp = ()=>{
     num1 = null;
     num2 = null;
@@ -41,19 +42,23 @@ for (let i = 0; i < numbers.length; i++) {
         if (num1 || isZeroDot) {
           display.innerHTML += event.target.innerHTML;
           num1 = parseFloat(display.innerHTML);
-          isZeroDot = num1 ? false : true;
+          isZeroDot = (num1 === 0);
+
         } else {
           display.innerHTML = event.target.innerHTML;
           num1 = parseFloat(display.innerHTML);
+          console.log(num1)
         }
       } else {
         if (num2 || isZeroDot) {
           display.innerHTML += event.target.innerHTML;
           num2 = parseFloat(display.innerHTML);
-          isZeroDot = num2 ? false : true;
+          isZeroDot = (num2 === 0)
+
         } else {
           display.innerHTML = event.target.innerHTML;
           num2 = parseFloat(display.innerHTML);
+
         }
       }
     } else {
@@ -72,9 +77,14 @@ for (let i = 0; i < operators.length; i++) {
       calculate();
       op = event.target.innerHTML;
       num2 = null;
+    }else if(num1 === 0 && isZeroDot){
+        
+        op = event.target.innerHTML;
+        isZeroDot = false;
     } else {
       op = event.target.innerHTML;
       num2 = null;
+    //   isZeroDot = true;
       isEqualPressed = false;
     }
   });
@@ -88,9 +98,22 @@ equalSign.addEventListener("click", (event) => {
 
 //listen dot
 dot.addEventListener('click', (event)=>{
-    if(!display.innerHTML.includes('.')){
-        display.innerHTML += event.target.innerHTML;
-        isZeroDot = (!num1 || !num2);
+    if(!isEqualPressed){
+        if(num1 && op && !num2 && !isZeroDot){
+            display.innerHTML = '0.'
+            isZeroDot = true;
+            // num2 = parseFloat(display.innerHTML);
+            
+        }else if(!display.innerHTML.includes('.')){
+            display.innerHTML += event.target.innerHTML;
+            isZeroDot = (!num1 || !num2);
+        }
+    }else{
+        clearNumsOp();
+        display.innerHTML = '0.'
+        isZeroDot = true;
+        isEqualPressed = false;
     }
+    
     
 })
